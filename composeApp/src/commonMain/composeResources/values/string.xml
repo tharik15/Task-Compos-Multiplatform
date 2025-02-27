@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My awesome app</string>
+    <string name="add_task">Add Task</string>
+    <string name="list_screen">List Screen</string>
+    <string name="alert_dialog_title">Remove \'%1$s\'?</string>
+    <string name="alert_dialog_text">Are you sure you want to remove \'%1$s\'</string>
+    <string name="remove">remove</string>
+    <string name="remove_all_task_title">Remove all task?</string>
+    <string name="remove_all_task_text">Are you sure you want to remove All task</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="down_arrow">Arrow Down</string>
+    <string name="sad">Sad</string>
+    <string name="no_task_available">No Task Available</string>
+    <string name="search_task">Search Task</string>
+    <string name="delete_icon">Delete icon</string>
+    <string name="all_tasks_deleted">All Tasks Deleted..</string>
+    <string name="back_icon">Back Icon</string>
+    <string name="close_icon">Close Icon</string>
+    <string name="update_icon">Update Icon</string>
+    <string name="empty_field">Field is Empty</string>
+</resources>

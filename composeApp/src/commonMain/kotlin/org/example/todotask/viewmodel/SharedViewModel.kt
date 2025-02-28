@@ -75,7 +75,7 @@ constructor(private val toDoRepository: ToDoRepository
 
     private fun readSortTask(){
         _sortState.value = RequestState.Idle
-        _sortState.value = RequestState.Success(Priority.NONE)
+        _sortState.value = RequestState.Success(Priority.LOW)
         /*try {
             viewModelScope.launch {
                 dataStoreRepository.readStoreState.
@@ -142,6 +142,10 @@ constructor(private val toDoRepository: ToDoRepository
         }catch (e:Exception){
             e.printStackTrace()
         }
+    }
+
+    fun resetSelectedTask(){
+        _selectedTask.value = null
     }
 
     fun updateTask(todoTask: TodoTask?){

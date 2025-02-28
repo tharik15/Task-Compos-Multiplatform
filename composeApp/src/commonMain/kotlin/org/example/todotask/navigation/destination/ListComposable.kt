@@ -26,6 +26,9 @@ fun NavGraphBuilder.listComposable(
         var rememberAction by rememberSaveable { mutableStateOf(Actions.NO_ACTION) }
 
         LaunchedEffect(key1 = action) {
+            if (action == Actions.NO_ACTION){
+                sharedViewModel.resetSelectedTask()
+            }
             if (action != rememberAction){
                 rememberAction = action
                 sharedViewModel.updateAction(action)

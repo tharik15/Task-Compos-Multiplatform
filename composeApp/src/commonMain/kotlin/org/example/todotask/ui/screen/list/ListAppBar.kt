@@ -141,6 +141,7 @@ fun SortAction(
     var expanded by remember { mutableStateOf(false) }
 
     IconButton(onClick = { expanded = true  }) {
+
         Icon(painter = painterResource(Res.drawable.ic_filter_24), contentDescription = stringResource(Res.string.search_task),
             tint = MaterialTheme.colorScheme.surfaceTint
         )

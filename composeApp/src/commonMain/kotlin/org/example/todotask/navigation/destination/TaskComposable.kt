@@ -15,7 +15,7 @@ import org.example.todotask.ui.screen.task.TaskScreen
 import org.example.todotask.viewmodel.SharedViewModel
 
 fun NavGraphBuilder.taskComposable(
-    navigateToListScreen:(Actions) -> Unit,
+    navigateToListScreen:(String) -> Unit,
     sharedViewModel : SharedViewModel
 ){
     composable<Screen.Task>(

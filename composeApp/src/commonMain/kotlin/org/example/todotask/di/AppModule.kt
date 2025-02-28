@@ -1,23 +1,22 @@
 package org.example.todotask.di
 
-
-import androidx.room.Room
-import org.example.todotask.Factory
-import org.example.todotask.data.TodoDatabase
-import org.example.todotask.util.Constants.DATABASE_NAME
+import app.cash.sqldelight.db.SqlDriver
 import org.example.todotask.data.UserRepository
 import org.example.todotask.data.UserRepositoryImpl
-import org.example.todotask.getPlatform
 import org.example.todotask.repositories.ToDoRepository
 import org.example.todotask.viewmodel.SharedViewModel
 import org.example.todotask.viewmodel.UserViewModel
 import org.koin.core.module.Module
-import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
-import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
+
+// Common database creation function
+
+fun provideDatabase(driver: SqlDriver): org.example.todotask.db.TodoDatabase {
+    return org.example.todotask.db.TodoDatabase(driver)
+}
 
 val appModule = module {
 
@@ -34,6 +33,10 @@ val appModule = module {
 //    viewModel { SharedViewModel(get()) }
 }
 
+val provideDrive = module {
+    singleOf(::provideDatabase)
+}
+
 val provideUseCaseModule = module {
     singleOf(::ToDoRepository)
     singleOf(::UserRepositoryImpl).bind(UserRepository::class)
@@ -44,4 +47,4 @@ val provideViewModelModule = module {
     viewModelOf(::UserViewModel)
 }
 
-expect fun platformModule(): Module
+expect fun sqlDelightPlatformModule(): Module

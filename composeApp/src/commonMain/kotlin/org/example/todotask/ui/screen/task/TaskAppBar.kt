@@ -18,7 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.example.composetodo.data.models.TodoTask
+import org.example.todotask.data.models.TodoTask
 import org.example.todotask.util.Actions
 import org.example.todotask.components.DisplayAlertDialog
 import org.example.todotask.data.models.Priority
@@ -38,7 +38,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun TaskAppBar(
     todoTask: TodoTask?,
     sharedViewModel: SharedViewModel,
-    navigateListTaskScreen: (Actions) -> Unit
+    navigateListTaskScreen: (String) -> Unit
 ){
 
     if (todoTask == null){
@@ -51,7 +51,7 @@ fun TaskAppBar(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddTaskAppBar(navigateListTaskScreen:(Actions) -> Unit){
+fun AddTaskAppBar(navigateListTaskScreen:(String) -> Unit){
     TopAppBar(
         title = { Text(text = stringResource(Res.string.add_task)) },
         navigationIcon = {
@@ -67,7 +67,7 @@ fun AddTaskAppBar(navigateListTaskScreen:(Actions) -> Unit){
 }
 
 @Composable
-fun BackArrow(onBackClicked:(Actions) -> Unit){
+fun BackArrow(onBackClicked:(String) -> Unit){
     IconButton(onClick = { onBackClicked(Actions.NO_ACTION)  }) {
         Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
@@ -76,7 +76,7 @@ fun BackArrow(onBackClicked:(Actions) -> Unit){
 }
 
 @Composable
-fun CloseIcon(onCloseClicked:(Actions) -> Unit){
+fun CloseIcon(onCloseClicked:(String) -> Unit){
     IconButton(onClick = { onCloseClicked(Actions.NO_ACTION)  }) {
         Icon(imageVector = Icons.Filled.Close, contentDescription = stringResource(Res.string.close_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
@@ -86,7 +86,7 @@ fun CloseIcon(onCloseClicked:(Actions) -> Unit){
 
 
 @Composable
-fun DoneNewTask(onAddClicked:(Actions) -> Unit){
+fun DoneNewTask(onAddClicked:(String) -> Unit){
     IconButton(onClick = { onAddClicked(Actions.ADD)  }) {
         Icon(imageVector = Icons.Filled.Check, contentDescription = stringResource(Res.string.add_task),
             tint = MaterialTheme.colorScheme.surfaceTint
@@ -97,7 +97,7 @@ fun DoneNewTask(onAddClicked:(Actions) -> Unit){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExistingTaskAppBar(todoTask: TodoTask,
-                       navigateListTaskScreen:(Actions) -> Unit){
+                       navigateListTaskScreen:(String) -> Unit){
     TopAppBar(
         title = { Text(text = todoTask.title) },
         navigationIcon = {
@@ -117,7 +117,7 @@ fun ExistingTaskAppBar(todoTask: TodoTask,
 @Composable
 fun ExistingAppBarActions(
     todoTask: TodoTask,
-    navigateListTaskScreen:(Actions) -> Unit
+    navigateListTaskScreen:(String) -> Unit
 ){
     var isDialogOpen by remember { mutableStateOf(false) }
 
@@ -148,7 +148,7 @@ fun DeleteTask(onDeleteClicked:() -> Unit){
 }
 
 @Composable
-fun UpdateTask(onUpdateClicked:(Actions) -> Unit){
+fun UpdateTask(onUpdateClicked:(String) -> Unit){
     IconButton(onClick = { onUpdateClicked(Actions.UPDATE)  }) {
         Icon(imageVector = Icons.Filled.Done, contentDescription = stringResource(Res.string.update_icon),
             tint = MaterialTheme.colorScheme.surfaceTint

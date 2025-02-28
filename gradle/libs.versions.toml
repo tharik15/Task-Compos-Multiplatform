@@ -12,6 +12,7 @@ androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-multiplatform = "1.7.3"
+composeVersion = "1.7.3"
 junit = "4.13.2"
 kotlin = "2.1.0"
 kotlinx-coroutines = "1.10.1"
@@ -26,7 +27,7 @@ ksp = "2.1.0-1.0.29"
 ktorVersion = "3.0.3"
 pagingComposeAndroid = "3.3.5"
 skie = "0.10.0"
-sqlite = "2.5.0-SNAPSHOT"
+sqlite = "2.5.0-alpha12"
 spotless = "7.0.2"
 okio = "3.10.2"
 runner = "1.6.2"
@@ -66,9 +67,12 @@ androidx-compose-material = { group = "androidx.wear.compose", name = "compose-m
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion" }
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+android-sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
 native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+native-sqlite-driver = { group = "app.cash.sqldelight", name = 'sqlite-driver', version.ref = "sqlDelight" }
 runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
+ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

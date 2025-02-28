@@ -1,7 +1,6 @@
 package org.example.todotask.ui.screen.list
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
@@ -32,21 +31,18 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.composetodo.data.models.TodoTask
 import org.example.todotask.ui.theme.EX_LARGE_PADDING
 import org.example.todotask.ui.theme.LARGE_PADDING
 import org.example.todotask.util.Actions
 import org.example.todotask.util.RequestState
 import org.example.todotask.util.SearchAppBarState
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import org.example.todotask.data.models.TodoTask
 import org.example.todotask.data.models.Priority
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.delete_icon
@@ -64,7 +60,7 @@ fun ListContent(
     highPriorityTask:List<TodoTask>,
     sortState: RequestState<Priority>,
     searchAppBarState: SearchAppBarState,
-    swipeToDelete:(Actions, TodoTask) -> Unit
+    swipeToDelete:(String, TodoTask) -> Unit
 ){
     if (sortState is RequestState.Success){
         when{
@@ -107,7 +103,7 @@ fun HandleListContent(
     modifier: Modifier = Modifier,
     taskList:List<TodoTask>,
     navigateToTaskScreen :(Int) -> Unit,
-    swipeToDelete:(Actions, TodoTask) -> Unit
+    swipeToDelete:(String, TodoTask) -> Unit
 ){
     if (taskList.isEmpty()){
         EmptyContent()
@@ -123,7 +119,7 @@ fun HandleListContent(
 fun ListContentView(modifier: Modifier = Modifier,
                     taskList: List<TodoTask>,
                     navigateToTaskScreen :(Int) -> Unit,
-                    swipeToDelete:(Actions, TodoTask) -> Unit){
+                    swipeToDelete:(String, TodoTask) -> Unit){
 
     LazyColumn (modifier = modifier.fillMaxSize(),
         state = rememberLazyListState()){

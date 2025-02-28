@@ -1,26 +1,25 @@
 package org.example.todotask.viewmodel
 
+//import org.example.todotask.repositories.DataStoreRepository
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.composetodo.data.models.TodoTask
-import org.example.todotask.ui.theme.TITLE_MAX_LENGHT
-import org.example.todotask.util.Actions
-import org.example.todotask.util.RequestState
-import org.example.todotask.util.SearchAppBarState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.example.todotask.data.models.TodoTask
 import org.example.todotask.data.models.Priority
-//import org.example.todotask.repositories.DataStoreRepository
 import org.example.todotask.repositories.ToDoRepository
+import org.example.todotask.ui.theme.TITLE_MAX_LENGHT
+import org.example.todotask.util.Actions
+import org.example.todotask.util.RequestState
+import org.example.todotask.util.SearchAppBarState
 import org.koin.core.component.KoinComponent
 
 class SharedViewModel
@@ -131,16 +130,21 @@ constructor(private val toDoRepository: ToDoRepository
     fun getSelectedTask(taskId:Int){
         try {
             viewModelScope.launch {
-                toDoRepository.getSelectedTask(taskId).collect{ task ->
-                    _selectedTask.value = task
+                try {
+                    toDoRepository.getSelectedTask(taskId).collect{ task ->
+                        _selectedTask.value = task
+                    }
+                }catch (e:Exception){
+                    println(e)
                 }
+
             }
         }catch (e:Exception){
             e.printStackTrace()
         }
     }
 
-    fun updateTask(todoTask:TodoTask?){
+    fun updateTask(todoTask: TodoTask?){
         if (todoTask != null){
             id = todoTask.id
             title = todoTask.title
@@ -203,7 +207,7 @@ constructor(private val toDoRepository: ToDoRepository
         }
     }
 
-    fun callDatabaseAction(actions: Actions){
+    fun callDatabaseAction(actions: String){
         when(actions){
             Actions.ADD -> {
                 addTask()
@@ -233,7 +237,7 @@ constructor(private val toDoRepository: ToDoRepository
     fun updateTitle(newTitle:String){
         title = newTitle
     }
-    fun updateAction(actions: Actions){
+    fun updateAction(actions: String){
         action = actions
     }
 

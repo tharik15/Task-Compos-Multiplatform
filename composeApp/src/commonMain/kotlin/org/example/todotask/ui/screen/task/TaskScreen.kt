@@ -3,21 +3,18 @@ package org.example.todotask.ui.screen.task
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.example.composetodo.data.models.TodoTask
-import kotlinx.coroutines.launch
+import org.example.todotask.data.models.TodoTask
 
 import org.example.todotask.util.Actions
 import org.example.todotask.data.models.Priority
-import org.example.todotask.showToast
 import org.example.todotask.viewmodel.SharedViewModel
 
 @Composable
 fun TaskScreen(
     todoTask: TodoTask?,
     sharedViewModel: SharedViewModel,
-    navigateListTaskScreen:(Actions) -> Unit
+    navigateListTaskScreen:(String) -> Unit
 ){
     val title:String = sharedViewModel.title
     val description:String = sharedViewModel.description

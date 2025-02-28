@@ -9,6 +9,6 @@ import org.koin.dsl.module
 
 fun initKoin(config : KoinAppDeclaration? = null) =
     startKoin { config?.invoke(this)
-    modules(platformModule(),
-        provideUseCaseModule,provideViewModelModule, )
+    modules(sqlDelightPlatformModule(),provideDrive,
+        provideUseCaseModule,provideViewModelModule)
 }

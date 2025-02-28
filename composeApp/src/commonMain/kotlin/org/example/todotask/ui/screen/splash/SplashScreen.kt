@@ -31,7 +31,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun SplashScreen(
-    navigateListScreen:(Actions) -> Unit
+    navigateListScreen:(String) -> Unit
 ){
     var isStartAnimation by remember { mutableStateOf(false) }
     val offSetState by animateDpAsState(targetValue =

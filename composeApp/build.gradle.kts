@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -12,8 +13,8 @@ plugins {
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.0.20"
     alias(libs.plugins.ksp)
-    alias(libs.plugins.room)
-    alias(libs.plugins.sqldelight)
+//    alias(libs.plugins.room)
+    alias(libs.plugins.sqldelight) //sqdelight
 }
 
 kotlin {
@@ -65,10 +66,14 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
-            implementation(libs.android.driver)
+            implementation(libs.android.driver) //sqdelight
 
         }
+        val commonMain by getting {
+            resources.srcDir("composeResources")
+        }
         commonMain.dependencies {
+            implementation(libs.ui)
             implementation(libs.kotlin.stdlib)
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -83,12 +88,13 @@ kotlin {
             implementation(libs.koin.compose.viewmodel.nav)
             implementation(libs.androidx.lifecycle.viewmodel)
 
-            implementation(libs.androidx.room.runtime)
+//            implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
 
             api(libs.androidx.datastore.preferences.core)
             api(libs.androidx.datastore.core.okio)
-            implementation(libs.runtime)
+            implementation(libs.runtime) //sqdelight
+            implementation(libs.android.sqldelight.coroutines) //sqdelight
 
 //            implementation(libs.koin.compose.viewmodel)
 //            implementation(libs.koin.compose)
@@ -97,9 +103,11 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+            implementation(libs.native.sqlite.driver)
         }
         iosMain.dependencies {
-            implementation(libs.native.driver)
+            implementation(libs.native.driver) //sqdelight
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
     }
 }
@@ -144,11 +152,8 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
-    ksp(libs.androidx.room.compiler)
+//    ksp(libs.androidx.room.compiler)
 
-//    implementation("androidx.room:room-runtime:2.4.2")
-//    ksp("androidx.room:room-compiler:2.4.2")
-//    ksp("com.google.devtools.ksp:symbol-processing-api:2.1.0-1.0.29")
 
 }
 compose.desktop {
@@ -169,8 +174,15 @@ compose.resources {
     generateResClass = auto
 }
 
-room {
-    schemaDirectory("$projectDir/schemas")
-}
+//room {
+//    schemaDirectory("$projectDir/schemas")
+//}
 
+sqldelight {
+    databases {
+        create(name = "TodoDatabase") {
+            packageName.set("org.example.todotask.db")
+        }
+    }
+}
 

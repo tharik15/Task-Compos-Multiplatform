@@ -32,7 +32,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ListScreen(
-    actions: Actions,
+    actions: String,
     navigateToTaskScreen :(Int) -> Unit,
     sharedViewModel : SharedViewModel
 ){
@@ -126,9 +126,9 @@ fun FabButton(
 fun DisplaySnackBar(
     snackBarHostState:SnackbarHostState,
     title:String,
-    actions: Actions,
-    onComplete:(Actions) -> Unit,
-    onUndoClicked:(Actions) -> Unit
+    actions: String,
+    onComplete:(String) -> Unit,
+    onUndoClicked:(String) -> Unit
 ){
 
     val scope = rememberCoroutineScope()
@@ -150,16 +150,16 @@ fun DisplaySnackBar(
     }
 }
 
-private fun getMessage(actions: Actions, title: String):String{
-    return if (actions.name == "DELETE_ALL"){
+private fun getMessage(actions: String, title: String):String{
+    return if (actions == "DELETE_ALL"){
         "All Tasks Deleted.."
     }else{
-        "${actions.name} $title"
+        "${actions} $title"
     }
 }
 
-private fun getSelectedState(actions: Actions):String{
-    return if (actions.name == "DELETE"){
+private fun getSelectedState(actions: String):String{
+    return if (actions == "DELETE"){
         "Undo"
     }else{
         "OK"

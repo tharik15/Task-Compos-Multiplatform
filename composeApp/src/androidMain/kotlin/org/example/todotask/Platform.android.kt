@@ -6,10 +6,10 @@ import android.os.Build
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import kotlinx.coroutines.Dispatchers
-import org.example.todotask.data.TodoDatabase
 import org.example.todotask.data.dbFileName
 import org.koin.core.scope.Scope
 
@@ -29,16 +29,16 @@ actual fun showToast(message: String, context: Any) {
     Toast.makeText(context as Context, message, Toast.LENGTH_SHORT).show()
 }
 
-actual class Factory {
-    actual fun createRoomDatabase(): TodoDatabase {
-        val appContext = SharedModule.getContext()
-        val dbFile = appContext.getDatabasePath(dbFileName)
-        return Room.databaseBuilder<TodoDatabase>(
-            context = appContext,
-            name = dbFile.absolutePath,
-        )
-            .setDriver(BundledSQLiteDriver())
-            .setQueryCoroutineContext(Dispatchers.IO)
-            .build()
-    }
-}
+//actual class Factory {
+//    actual fun createRoomDatabase(): TodoDatabase {
+//        val appContext = SharedModule.getContext()
+//        val dbFile = appContext.getDatabasePath(dbFileName)
+//        return Room.databaseBuilder<TodoDatabase>(
+//            context = appContext,
+//            name = dbFile.absolutePath,
+//        )
+//            .setDriver(BundledSQLiteDriver())
+//            .setQueryCoroutineContext(Dispatchers.IO)
+//            .build()
+//    }
+//}

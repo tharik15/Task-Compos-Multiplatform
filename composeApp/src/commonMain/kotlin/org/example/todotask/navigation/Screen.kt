@@ -13,6 +13,8 @@ sealed class Screen{
     @Serializable
     data class Image(val id: Int):Screen()
     @Serializable
+    data object Splash:Screen()
+    @Serializable
     data class NavigationBar(val id: Int):Screen()
 
 }

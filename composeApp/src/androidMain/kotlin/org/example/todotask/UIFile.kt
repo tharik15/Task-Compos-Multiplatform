@@ -1,4 +1,4 @@
-package org.example.todotask.ui.screen.splash
+package org.example.todotask
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -6,10 +6,15 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -19,14 +24,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.example.todotask.util.Actions
 import kotlinx.coroutines.delay
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.logo
+import org.example.todotask.util.Actions
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+
 
 @Composable
 fun SplashScreen(
@@ -59,11 +67,22 @@ fun SplashScreen(
         contentAlignment = Alignment.Center
 
     ) {
-        Image(modifier = Modifier
+        Column(modifier = Modifier
             .offset(y = offSetState)
-            .alpha(alpha = alphaState),
-            painter = painterResource(getDrawable()),
-            contentDescription = "Logo")
+            .alpha(alpha = alphaState).padding(5.dp),
+            horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                painter = painterResource(getDrawable()),
+                contentDescription = "Logo")
+
+            Text(modifier = Modifier,
+                text = "Welcome Back",
+                color = Color.Black,
+                style = MaterialTheme.typography.titleLarge,
+                maxLines = 1)
+        }
+
+
     }
 }
 
@@ -76,7 +95,7 @@ fun getDrawable(): DrawableResource {
     }
 }
 
-@Preview
+@androidx.compose.ui.tooling.preview.Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview(){
     SplashScreen({

@@ -102,10 +102,10 @@ fun ListScreen(
 
     LifecycleAwareComposable(
         onStart = {
-//            Log.i("LifecycleAwareComposable","Handle onStart event")
+            println("LifecycleAwareComposable\",\"Handle onStart event")
         },
         onStop = {
-//            Log.i("LifecycleAwareComposable","Handle onStop event")
+            println("\"LifecycleAwareComposable\",\"Handle onStop event\"")
         }
     )
 }

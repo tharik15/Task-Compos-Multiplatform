@@ -1,19 +1,12 @@
-import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
-
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.0.20"
     alias(libs.plugins.ksp)
-//    alias(libs.plugins.room)
     alias(libs.plugins.sqldelight) //sqdelight
 }
 
@@ -63,7 +56,8 @@ kotlin {
         val desktopMain by getting
 
         androidMain.dependencies {
-            implementation(compose.preview)
+            implementation(compose.components.uiToolingPreview)
+//            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.android.driver) //sqdelight
@@ -73,6 +67,7 @@ kotlin {
             resources.srcDir("composeResources")
         }
         commonMain.dependencies {
+            implementation(compose.components.uiToolingPreview)
             implementation(libs.ui)
             implementation(libs.kotlin.stdlib)
             implementation(compose.runtime)
@@ -87,8 +82,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.koin.compose.viewmodel.nav)
             implementation(libs.androidx.lifecycle.viewmodel)
-
-//            implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
 
             api(libs.androidx.datastore.preferences.core)
@@ -96,16 +89,16 @@ kotlin {
             implementation(libs.runtime) //sqdelight
             implementation(libs.android.sqldelight.coroutines) //sqdelight
 
-//            implementation(libs.koin.compose.viewmodel)
-//            implementation(libs.koin.compose)
 
         }
         desktopMain.dependencies {
+            implementation(compose.components.uiToolingPreview)
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.native.sqlite.driver)
         }
         iosMain.dependencies {
+            implementation(compose.components.uiToolingPreview)
             implementation(libs.native.driver) //sqdelight
             implementation(libs.ktor.serialization.kotlinx.json)
         }
@@ -143,6 +136,10 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.7.3" // Ensure this version matches your composeVersion
     }
 
 }

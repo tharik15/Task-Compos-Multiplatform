@@ -3,6 +3,7 @@ package org.example.todotask.di
 import app.cash.sqldelight.db.SqlDriver
 import org.example.todotask.data.UserRepository
 import org.example.todotask.data.UserRepositoryImpl
+import org.example.todotask.repositories.DataStoreRepository
 import org.example.todotask.repositories.ToDoRepository
 import org.example.todotask.viewmodel.SharedViewModel
 import org.example.todotask.viewmodel.UserViewModel
@@ -12,7 +13,6 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-// Common database creation function
 
 fun provideDatabase(driver: SqlDriver): org.example.todotask.db.TodoDatabase {
     return org.example.todotask.db.TodoDatabase(driver)
@@ -33,6 +33,10 @@ val appModule = module {
 //    viewModel { SharedViewModel(get()) }
 }
 
+val provideDataStoreRepository = module {
+    singleOf(::DataStoreRepository)
+}
+
 val provideDrive = module {
     singleOf(::provideDatabase)
 }
@@ -48,3 +52,5 @@ val provideViewModelModule = module {
 }
 
 expect fun sqlDelightPlatformModule(): Module
+
+expect fun dataStorePlatformModule():Module

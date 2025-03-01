@@ -4,6 +4,8 @@ object Constants {
 
     const val DATABASE_TABLE = "todo_table"
     const val DATABASE_NAME = "todo_database"
+    const val PREFERENCE_NAME = "todo_preferences"
+    const val PREFERENCE_KEY = "sorter_key"
 
     //Rout
 //    const val LIST_SCREEN = "list/{action}"
@@ -23,7 +25,5 @@ object Constants {
     const val NAVIGATION_BAR_ARGUMENT_KEY = "navigationId"
     const val NAVIGATION_DRAWER_ARGUMENT_KEY = "navigationId"
 
-    const val PREFERENCE_NAME = "todo_preferences"
-    const val PREFERENCE_KEY = "sorter_key"
 
 }

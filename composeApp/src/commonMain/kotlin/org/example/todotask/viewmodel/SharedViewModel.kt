@@ -11,10 +11,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.example.todotask.data.models.TodoTask
 import org.example.todotask.data.models.Priority
+import org.example.todotask.repositories.DataStoreRepository
 import org.example.todotask.repositories.ToDoRepository
 import org.example.todotask.ui.theme.TITLE_MAX_LENGHT
 import org.example.todotask.util.Actions
@@ -24,7 +26,7 @@ import org.koin.core.component.KoinComponent
 
 class SharedViewModel
 constructor(private val toDoRepository: ToDoRepository
-//, private val dataStoreRepository: DataStoreRepository
+, private val dataStoreRepository: DataStoreRepository
 ) : ViewModel(),KoinComponent {
 
 
@@ -75,8 +77,8 @@ constructor(private val toDoRepository: ToDoRepository
 
     private fun readSortTask(){
         _sortState.value = RequestState.Idle
-        _sortState.value = RequestState.Success(Priority.LOW)
-        /*try {
+//        _sortState.value = RequestState.Success(Priority.LOW)
+        try {
             viewModelScope.launch {
                 dataStoreRepository.readStoreState.
                map {
@@ -87,12 +89,12 @@ constructor(private val toDoRepository: ToDoRepository
             }
         }catch (e:Exception){
             _sortState.value = RequestState.Failure(e)
-        }*/
+        }
 
     }
     fun persistSortState(priority: Priority){
         viewModelScope.launch {
-//            dataStoreRepository.persistSortState(priority)
+            dataStoreRepository.persistSortState(priority)
         }
     }
 

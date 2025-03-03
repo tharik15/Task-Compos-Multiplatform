@@ -36,7 +36,7 @@ import org.example.todotask.ui.theme.LARGE_PADDING
 import org.example.todotask.ui.theme.TOP_APP_BAR_SIZE
 import org.example.todotask.util.Actions
 import org.example.todotask.util.SearchAppBarState
-import org.example.todotask.PriorityItem
+import org.example.todotask.components.PriorityItem
 import org.example.todotask.components.DisplayAlertDialog
 import org.example.todotask.data.models.Priority
 import org.example.todotask.resources.Res

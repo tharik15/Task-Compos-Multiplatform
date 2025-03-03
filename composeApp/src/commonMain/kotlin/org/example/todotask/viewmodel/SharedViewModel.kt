@@ -138,6 +138,7 @@ constructor(private val toDoRepository: ToDoRepository
                     }
                 }catch (e:Exception){
                     println(e)
+                    _selectedTask.value = null
                 }
 
             }

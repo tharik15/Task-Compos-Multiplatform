@@ -7,9 +7,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -19,6 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import org.example.todotask.util.Actions
 import kotlinx.coroutines.delay
@@ -59,11 +64,20 @@ fun SplashScreen(
         contentAlignment = Alignment.Center
 
     ) {
-        Image(modifier = Modifier
-            .offset(y = offSetState)
-            .alpha(alpha = alphaState),
-            painter = painterResource(getDrawable()),
-            contentDescription = "Logo")
+        Column(modifier = Modifier
+            .alpha(alphaState).offset(offSetState).padding(5.dp),
+            horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                painter = painterResource(getDrawable()),
+                contentDescription = "Logo")
+
+            Text(modifier = Modifier,
+                text = "Todo Task",
+                color = Color.Black,
+                fontStyle = FontStyle.Italic,
+                style = MaterialTheme.typography.titleLarge,
+                maxLines = 1)
+        }
     }
 }
 

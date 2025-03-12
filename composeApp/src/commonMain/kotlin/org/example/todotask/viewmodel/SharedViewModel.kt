@@ -119,6 +119,18 @@ constructor(private val toDoRepository: ToDoRepository
         _searchTask.value = RequestState.Idle
         try {
             viewModelScope.launch {
+//                _searchTask.value =  _searchTextState.debounce(600)
+//                .map { it.trim().lowercase() }
+//                .distinctUntilChanged()
+//                .flatMapLatest { searchQuery ->
+//                    toDoRepository.searchDataBase(searchQuery = "%${searchQuery}%")
+//                }
+//                .map { RequestState.Success(data = it) }
+//                    .stateIn(
+//                    scope = coroutineContext,
+//                    started = SharingStarted.WhileSubscribed(5000),
+//                    initialValue = RequestState.Loading
+//                )
                 toDoRepository.searchDataBase(searchQuery = "%${searchQuery}%").collect{
                     _searchTask.value = RequestState.Success(it)
                 }

@@ -6,9 +6,6 @@ import java.sql.DriverManager
 
 fun createDataBaseDriver(): SqlDriver {
     val dbFilePath = "jdbc:sqlite:./TodoDatabase.db"
-//    val driver = JdbcSqliteDriver(dbFilePath)
-//    // This will ensure that the table is created if it doesn't exist
-//    TodoDatabase.Schema.create(driver)
     if (!isTableExists(dbFilePath, "todo_table")) {
         val driver = JdbcSqliteDriver(dbFilePath)
         TodoDatabase.Schema.create(driver)  // Create the schema if it doesn't exist
@@ -27,17 +24,4 @@ fun isTableExists(dbPath: String, tableName: String): Boolean {
     resultSet.close()
     connection.close()
     return exists
-}
-
-fun setupDatabase(): TodoDatabase {
-    val dbPath = "jdbc:sqlite:./TodoDatabase.db"
-    if (!isTableExists(dbPath, "todo_table")) {
-        val driver = JdbcSqliteDriver(dbPath)
-        TodoDatabase.Schema.create(driver)  // Create the schema if it doesn't exist
-        return TodoDatabase(driver)
-    } else {
-        // Open the existing database
-        val driver = JdbcSqliteDriver(dbPath)
-        return TodoDatabase(driver)
-    }
 }

@@ -167,7 +167,6 @@ fun ListContentView(modifier: Modifier = Modifier,
                     animationSpec = tween(durationMillis = 300)
                 )
             ) {
-                DisplayTaskElevatedCard(todoTask,navigateToTaskScreen)
 
                 SwipeToDismissBox(
                     state = dismissState,

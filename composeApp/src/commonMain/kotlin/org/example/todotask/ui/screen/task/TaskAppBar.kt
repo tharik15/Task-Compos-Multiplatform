@@ -37,7 +37,6 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun TaskAppBar(
     todoTask: TodoTask?,
-    sharedViewModel: SharedViewModel,
     navigateListTaskScreen: (String) -> Unit
 ){
 

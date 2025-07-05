@@ -25,7 +25,6 @@ fun TaskScreen(
     Scaffold(
         topBar = {
               TaskAppBar(todoTask,
-                  sharedViewModel,
                   navigateListTaskScreen = { actions ->
                       if (actions == Actions.NO_ACTION){
                           navigateListTaskScreen(actions)

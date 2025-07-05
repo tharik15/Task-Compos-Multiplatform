@@ -1,11 +1,7 @@
 package org.example.todotask.util
 
-import androidx.core.bundle.Bundle
-import androidx.navigation.NavType
-import kotlinx.serialization.Serializable
 
-
- object Actions {
+object Actions {
     const val ADD = "ADD"
     const val UPDATE = "UPDATE"
     const val DELETE = "DELETE"

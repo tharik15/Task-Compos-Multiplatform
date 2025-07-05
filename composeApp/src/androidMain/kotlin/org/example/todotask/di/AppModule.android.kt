@@ -1,6 +1,5 @@
 package org.example.todotask.di
 
-import androidx.datastore.preferences.core.Preferences
 import app.cash.sqldelight.db.SqlDriver
 import org.example.todotask.createDataStore
 import org.example.todotask.db.createDataBaseDriver

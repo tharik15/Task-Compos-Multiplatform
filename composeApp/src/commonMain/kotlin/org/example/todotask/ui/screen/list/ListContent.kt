@@ -23,7 +23,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismissBox
@@ -41,21 +40,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.example.todotask.data.models.Priority
+import org.example.todotask.data.models.TodoTask
+import org.example.todotask.resources.Res
+import org.example.todotask.resources.delete_icon
 import org.example.todotask.ui.theme.EX_LARGE_PADDING
+import org.example.todotask.ui.theme.HighPriorityColor
 import org.example.todotask.ui.theme.LARGE_PADDING
 import org.example.todotask.util.Actions
 import org.example.todotask.util.RequestState
 import org.example.todotask.util.SearchAppBarState
-import org.example.todotask.data.models.TodoTask
-import org.example.todotask.data.models.Priority
-import org.example.todotask.resources.Res
-import org.example.todotask.resources.delete_icon
-import org.example.todotask.ui.theme.HighPriorityColor
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 

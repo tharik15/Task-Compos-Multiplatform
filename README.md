@@ -1,11 +1,11 @@
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
 
 **Tech Stacks**
-Kotlin
-Jetpack Compose for UI
-Koin for Dependacy Injection
-SqlDelight for local DB
-Coroutine with Stateflow
+Kotlin ,
+Jetpack Compose for UI ,
+Koin for Dependacy Injection ,
+SqlDelight for local DB , 
+Coroutine with Stateflow ,
 MVVM for Architech Pattern
 
 **ScreenShots**

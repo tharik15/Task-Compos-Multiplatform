@@ -54,3 +54,5 @@ val provideViewModelModule = module {
 expect fun sqlDelightPlatformModule(): Module
 
 expect fun dataStorePlatformModule():Module
+
+expect fun controllerModule():Module

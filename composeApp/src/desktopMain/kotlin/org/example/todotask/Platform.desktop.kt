@@ -16,3 +16,8 @@ actual fun createDataStore(scope: Scope): DataStore<Preferences> {
         dataStoreFile.absolutePath.toPath()
     }
 }
+
+actual fun loadImageBytesFromPath(path: String): ByteArray {
+    val file = File(path)
+    return if (file.exists()) file.readBytes() else ByteArray(0)
+}

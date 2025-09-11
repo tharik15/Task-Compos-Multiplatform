@@ -22,18 +22,21 @@ import org.example.todotask.viewmodel.UserViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
+import org.koin.compose.getKoin
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 @Preview
 fun App() {
     val navController = rememberNavController()
-
     val sharedViewModel = koinViewModel<SharedViewModel>()
+    val controller = koinInject<CameraController>()
     MaterialTheme {
         SetupNavigation(
             navController = navController,
-            sharedViewModel = sharedViewModel)
+            sharedViewModel = sharedViewModel,
+            controller)
     }
 }
 

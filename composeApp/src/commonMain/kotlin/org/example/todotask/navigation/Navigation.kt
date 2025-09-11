@@ -4,6 +4,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import org.example.todotask.CameraController
 import org.example.todotask.navigation.destination.listComposable
 import org.example.todotask.navigation.destination.splashComposable
 import org.example.todotask.navigation.destination.taskComposable
@@ -12,7 +13,8 @@ import org.example.todotask.viewmodel.SharedViewModel
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun SetupNavigation(navController: NavHostController,
-                    sharedViewModel : SharedViewModel
+                    sharedViewModel : SharedViewModel,
+                    controller :CameraController
 ){
 
     NavHost(navController = navController,
@@ -35,7 +37,8 @@ fun SetupNavigation(navController: NavHostController,
                }
 
             },
-            sharedViewModel = sharedViewModel
+            sharedViewModel = sharedViewModel,
+            controller = controller
         )
     }
 }

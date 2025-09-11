@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.example.todotask.CameraController
 import org.example.todotask.data.models.TodoTask
 
 import org.example.todotask.util.Actions
@@ -14,7 +15,8 @@ import org.example.todotask.viewmodel.SharedViewModel
 fun TaskScreen(
     todoTask: TodoTask?,
     sharedViewModel: SharedViewModel,
-    navigateListTaskScreen:(String) -> Unit
+    navigateListTaskScreen:(String) -> Unit,
+    controller: CameraController
 ){
     val title:String = sharedViewModel.title
     val description:String = sharedViewModel.description
@@ -54,38 +56,9 @@ fun TaskScreen(
                 description,
                 onDescriptionChanged = {desc ->
                     sharedViewModel.updateDescription(desc)
-                }
+                },
+                controller = controller
             )
         }
     )
 }
-
-//@Composable
-//fun showMessage() {
-//    val scope = rememberCoroutineScope()
-//    scope.launch {
-//        ShowToast("Hello, World!")
-//    }
-//}
-/*@Composable
-fun BackHandler(
-    backDispatcher: OnBackPressedDispatcher? = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher,
-    onBackPressed:() -> Unit
-){
-
-    val currentOnBackPressed by rememberUpdatedState(newValue = onBackPressed)
-    val backCallback = remember {
-        object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                currentOnBackPressed()
-            }
-
-        }
-    }
-    DisposableEffect(key1 = backDispatcher) {
-        backDispatcher?.addCallback(backCallback)
-        onDispose{
-            backCallback.remove()
-        }
-    }
-}*/

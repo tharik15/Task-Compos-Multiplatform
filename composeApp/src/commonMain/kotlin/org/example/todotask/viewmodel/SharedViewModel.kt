@@ -1,6 +1,6 @@
 package org.example.todotask.viewmodel
 
-//import org.example.todotask.repositories.DataStoreRepository
+
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -24,10 +24,8 @@ import org.example.todotask.util.RequestState
 import org.example.todotask.util.SearchAppBarState
 import org.koin.core.component.KoinComponent
 
-class SharedViewModel
-constructor(private val toDoRepository: ToDoRepository
-, private val dataStoreRepository: DataStoreRepository
-) : ViewModel(),KoinComponent {
+class SharedViewModel constructor(private val toDoRepository: ToDoRepository,
+                                  private val dataStoreRepository: DataStoreRepository) : ViewModel(),KoinComponent {
 
 
     var id  by mutableIntStateOf(-1)
@@ -119,18 +117,6 @@ constructor(private val toDoRepository: ToDoRepository
         _searchTask.value = RequestState.Idle
         try {
             viewModelScope.launch {
-//                _searchTask.value =  _searchTextState.debounce(600)
-//                .map { it.trim().lowercase() }
-//                .distinctUntilChanged()
-//                .flatMapLatest { searchQuery ->
-//                    toDoRepository.searchDataBase(searchQuery = "%${searchQuery}%")
-//                }
-//                .map { RequestState.Success(data = it) }
-//                    .stateIn(
-//                    scope = coroutineContext,
-//                    started = SharingStarted.WhileSubscribed(5000),
-//                    initialValue = RequestState.Loading
-//                )
                 toDoRepository.searchDataBase(searchQuery = "%${searchQuery}%").collect{
                     _searchTask.value = RequestState.Success(it)
                 }

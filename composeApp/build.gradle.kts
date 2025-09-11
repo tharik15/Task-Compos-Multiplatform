@@ -57,10 +57,10 @@ kotlin {
 
         androidMain.dependencies {
             implementation(compose.components.uiToolingPreview)
-//            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.android.driver) //sqdelight
+            implementation("media.kamel:kamel-fetcher-resources-android:1.0.7")
 
         }
         val commonMain by getting {
@@ -76,7 +76,6 @@ kotlin {
             implementation("org.jetbrains.compose.ui:ui:1.7.3")
             implementation(libs.kotlinx.coroutines.core)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
@@ -88,7 +87,7 @@ kotlin {
             api(libs.androidx.datastore.core.okio)
             implementation(libs.runtime) //sqdelight
             implementation(libs.android.sqldelight.coroutines) //sqdelight
-
+//            implementation("media.kamel:kamel-image-default:1.0.7")
 
         }
         desktopMain.dependencies {
@@ -103,6 +102,13 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
         }
     }
+}
+kotlin {
+    jvmToolchain(11)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
 }
 
 android {
@@ -149,8 +155,6 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
-//    ksp(libs.androidx.room.compiler)
-
 
 }
 compose.desktop {
@@ -170,10 +174,6 @@ compose.resources {
     packageOfResClass = "org.example.todotask.resources"
     generateResClass = auto
 }
-
-//room {
-//    schemaDirectory("$projectDir/schemas")
-//}
 
 sqldelight {
     databases {

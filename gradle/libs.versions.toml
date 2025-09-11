@@ -1,10 +1,10 @@
     [versions]
-    agp = "8.5.2"
-    android-compileSdk = "34"
+    agp = "8.11.1"
+    android-compileSdk = "35"
     android-minSdk = "25"
-    android-targetSdk = "34"
-    androidx-activityCompose = "1.9.3"
-    androidx-lifecycle = "2.8.4"
+    android-targetSdk = "35"
+    androidx-activityCompose = "1.10.1"
+    androidx-lifecycle = "2.9.2"
     compose-multiplatform = "1.7.3"
     composeVersion = "1.7.3"
     kotlin = "2.1.0"
@@ -15,12 +15,12 @@
     sqlDelight = "2.0.1"
     dataStore = "1.1.3"
 
-    ksp = "2.1.0-1.0.29"
-    ktorVersion = "3.0.3"
+    ksp = "2.2.0-2.0.2"
+    ktorVersion = "3.2.3"
     sqlite = "2.5.0-alpha12"
-    material3Android = "1.3.1"
+    material3Android = "1.3.2"
     composeMaterial = "1.4.1"
-    uiAndroid = "1.7.8"
+    uiAndroid = "1.9.0"
 
     [libraries]
     androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -51,9 +51,6 @@
     composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
     composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
     kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-    androidKmpLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
     ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-    room = { id = "androidx.room", version.ref = "androidx-room" }
-    #sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelight" }
 
     sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }

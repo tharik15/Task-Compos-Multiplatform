@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import org.example.todotask.CameraController
 
 import org.example.todotask.util.Actions
 import org.example.todotask.navigation.Screen
@@ -16,7 +17,8 @@ import org.example.todotask.viewmodel.SharedViewModel
 
 fun NavGraphBuilder.taskComposable(
     navigateToListScreen:(String) -> Unit,
-    sharedViewModel : SharedViewModel
+    sharedViewModel : SharedViewModel,
+    controller: CameraController
 ){
     composable<Screen.Task>(
         enterTransition = {
@@ -40,6 +42,7 @@ fun NavGraphBuilder.taskComposable(
         }
 
         TaskScreen(todoTask = currentTask, sharedViewModel = sharedViewModel,
-            navigateListTaskScreen = navigateToListScreen)
+            navigateListTaskScreen = navigateToListScreen,
+            controller)
     }
 }

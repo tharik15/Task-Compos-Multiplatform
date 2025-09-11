@@ -9,5 +9,6 @@ fun initKoin(config : KoinAppDeclaration? = null) =
         provideDrive,
         provideDataStoreRepository,
         provideUseCaseModule,
-        provideViewModelModule)
+        provideViewModelModule,controllerModule()
+    )
 }

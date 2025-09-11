@@ -1,6 +1,7 @@
 package org.example.todotask.di
 
 import app.cash.sqldelight.db.SqlDriver
+import org.example.todotask.CameraController
 import org.example.todotask.createDataStore
 import org.example.todotask.db.createDataBaseDriver
 import org.koin.core.module.Module
@@ -13,4 +14,8 @@ actual fun sqlDelightPlatformModule() = module {
 
 actual fun dataStorePlatformModule() = module {
     single { createDataStore(this)  }
+}
+
+actual fun controllerModule() = module {
+    single { CameraController(this) }
 }

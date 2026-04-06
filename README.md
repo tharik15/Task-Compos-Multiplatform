@@ -12,20 +12,29 @@ MVVM for Architech Pattern
 
 **Android**
 
-![android-1](https://github.com/user-attachments/assets/df30b1ad-3356-412e-acf5-a8c45621b747)
-![android-2](https://github.com/user-attachments/assets/58c507a5-e020-4e50-a350-37c3de781dfd)
-![android-3](https://github.com/user-attachments/assets/912d6c29-3a75-4b1b-bde5-c3779453674d)
-![andorid-4](https://github.com/user-attachments/assets/d968b89f-2fd1-404f-b69c-279e2a423a0e)
+<img src="https://github.com/user-attachments/assets/df30b1ad-3356-412e-acf5-a8c45621b747" width="250">
+
+<img src="https://github.com/user-attachments/assets/58c507a5-e020-4e50-a350-37c3de781dfd" width="250">
+
+<img src="https://github.com/user-attachments/assets/912d6c29-3a75-4b1b-bde5-c3779453674d" width="250">
+
+<img src="https://github.com/user-attachments/assets/d968b89f-2fd1-404f-b69c-279e2a423a0e" width="250">
 
 **IOS**
 
-![IOS-1](https://github.com/user-attachments/assets/892347ff-b7f4-4699-bd4b-ef55471b1bd8)![IOS-4](https://github.com/user-attachments/assets/6d881660-2cb5-4bec-a668-7d1335f30447)
-![IOS-5](https://github.com/user-attachments/assets/95a04206-1b47-45e1-9f76-937d36f40cfc)
-![IOS-3](https://github.com/user-attachments/assets/12a66ae6-0945-4c57-9433-d221ca71b619)
-![IOS-2](https://github.com/user-attachments/assets/ccf79175-e1c3-487b-bf86-5fb5e2021e13)
+<img src="https://github.com/user-attachments/assets/892347ff-b7f4-4699-bd4b-ef55471b1bd8" width="250">
+
+<img src="https://github.com/user-attachments/assets/6d881660-2cb5-4bec-a668-7d1335f30447" width="250">
+
+<img src="https://github.com/user-attachments/assets/95a04206-1b47-45e1-9f76-937d36f40cfc" width="250">
+
+<img src="https://github.com/user-attachments/assets/12a66ae6-0945-4c57-9433-d221ca71b619" width="250">
+
+<img src="https://github.com/user-attachments/assets/ccf79175-e1c3-487b-bf86-5fb5e2021e13" width="250">
 
 **Desktop**
-<img width="803" alt="Screenshot 2025-07-08 at 8 57 42 PM" src="https://github.com/user-attachments/assets/c12173ca-9b58-47a5-85d2-6d520b2fdb2c" />
+
+<img src="https://github.com/user-attachments/assets/c12173ca-9b58-47a5-85d2-6d520b2fdb2c" width="500">
 
 
 

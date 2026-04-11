@@ -16,8 +16,8 @@ SELECT * FROM todo_table WHERE id = ?;
 
 
 insertTask:
-INSERT INTO todo_table (title, description, priority)
-VALUES (?, ?, ?);
+INSERT INTO todo_table (id,title, description, priority)
+VALUES (?,?, ?, ?);
 
 
 updateTask:

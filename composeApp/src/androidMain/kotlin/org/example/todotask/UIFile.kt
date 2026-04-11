@@ -1,5 +1,6 @@
 package org.example.todotask
 
+import android.graphics.drawable.Icon
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -20,13 +21,12 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -42,16 +42,17 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material.ContentAlpha
 import kotlinx.coroutines.delay
 import org.example.todotask.components.PriorityItem
 import org.example.todotask.data.models.Priority
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.logo
 import org.example.todotask.util.Actions
+import org.example.todotask.util.Alpha
 import org.example.todotask.util.PRIORITY_DROP_DOWN_HEIGHT
 import org.example.todotask.util.PRIORITY_INDICATOR_SIZE
 import org.jetbrains.compose.resources.DrawableResource
@@ -148,7 +149,7 @@ fun PriorityDropDown(
             }
             .border(
                 width = 1.dp,
-                color = MaterialTheme.colorScheme.primary.copy(alpha = ContentAlpha.disabled),
+                color = MaterialTheme.colorScheme.primary.copy(alpha = Alpha.DISABLED),
                 shape = MaterialTheme.shapes.small
             ),
         verticalAlignment = Alignment.CenterVertically
@@ -164,11 +165,11 @@ fun PriorityDropDown(
 
         IconButton(modifier = Modifier
             .weight(1.5f)
-            .alpha(ContentAlpha.medium)
+            .alpha(Alpha.HALF)
             .alpha(0.5f)
             .rotate(degrees = angle),
             onClick = { expanded = true }) {
-            Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = "arrow")
+            Icon(painter = painterResource(R.drawable.arrow_back), contentDescription = "arrow")
 
             DropdownMenu(
                 modifier = Modifier.width(with(LocalDensity.current){ dropdownWidth.width.toDp() }),

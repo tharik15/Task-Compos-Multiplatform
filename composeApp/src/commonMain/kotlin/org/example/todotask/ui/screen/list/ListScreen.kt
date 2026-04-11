@@ -1,8 +1,6 @@
 package org.example.todotask.ui.screen.list
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -27,7 +25,9 @@ import org.example.todotask.util.SearchAppBarState
 import kotlinx.coroutines.launch
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.add_task
+import org.example.todotask.util.Resource
 import org.example.todotask.viewmodel.SharedViewModel
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -115,7 +115,7 @@ fun FabButton(
     onFabClicked :(Int) -> Unit
 ){
     FloatingActionButton(onClick = { onFabClicked(-1) }) {
-        Icon(imageVector = Icons.Filled.Add,
+        Icon(painter = painterResource(Resource.Icon.ADD),
             contentDescription = stringResource(Res.string.add_task),
             tint = Color.Red
         )
@@ -154,7 +154,7 @@ private fun getMessage(actions: String, title: String):String{
     return if (actions == "DELETE_ALL"){
         "All Tasks Deleted.."
     }else{
-        "${actions} $title"
+        "$actions $title"
     }
 }
 

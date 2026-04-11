@@ -1,6 +1,5 @@
 package org.example.todotask.viewmodel
 
-//import org.example.todotask.repositories.DataStoreRepository
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -24,9 +23,8 @@ import org.example.todotask.util.RequestState
 import org.example.todotask.util.SearchAppBarState
 import org.koin.core.component.KoinComponent
 
-class SharedViewModel
-constructor(private val toDoRepository: ToDoRepository
-, private val dataStoreRepository: DataStoreRepository
+class SharedViewModel(private val toDoRepository: ToDoRepository,
+                      private val dataStoreRepository: DataStoreRepository
 ) : ViewModel(),KoinComponent {
 
 

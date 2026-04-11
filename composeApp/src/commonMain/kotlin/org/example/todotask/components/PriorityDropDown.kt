@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -32,8 +30,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import org.example.todotask.data.models.Priority
+import org.example.todotask.resources.Res
+import org.example.todotask.resources.arrow_back
 import org.example.todotask.util.PRIORITY_DROP_DOWN_HEIGHT
 import org.example.todotask.util.PRIORITY_INDICATOR_SIZE
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -80,7 +81,7 @@ fun PriorityDropDown(
             .alpha(0.5f)
             .rotate(degrees = angle),
             onClick = { expanded = true }) {
-            Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = "arrow")
+            Icon(painter = painterResource(Res.drawable.arrow_back), contentDescription = "arrow")
 
             DropdownMenu(
                 modifier = Modifier.width(with(LocalDensity.current){ dropdownWidth.width.toDp() }),

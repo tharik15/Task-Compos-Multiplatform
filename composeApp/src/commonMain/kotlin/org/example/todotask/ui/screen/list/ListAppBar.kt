@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -45,6 +42,7 @@ import org.example.todotask.resources.list_screen
 import org.example.todotask.resources.remove_all_task_text
 import org.example.todotask.resources.remove_all_task_title
 import org.example.todotask.resources.search_task
+import org.example.todotask.util.Resource
 import org.example.todotask.viewmodel.SharedViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -126,7 +124,7 @@ fun SearchAction(
     onSearchClicked:() -> Unit
 ){
     IconButton(onClick = { onSearchClicked()  }) {
-        Icon(imageVector = Icons.Filled.Search, contentDescription =  stringResource(Res.string.search_task),
+        Icon(painter = painterResource(Resource.Icon.SEARCH), contentDescription =  stringResource(Res.string.search_task),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }
@@ -236,7 +234,7 @@ fun SearchAppBar(
             leadingIcon = { 
                 IconButton(modifier = Modifier.alpha(0.2f),
                     onClick = {  }) {
-                    Icon(imageVector = Icons.Filled.Search, contentDescription = "Search Task",
+                    Icon(painter = painterResource(Resource.Icon.SEARCH), contentDescription = "Search Task",
                         tint = MaterialTheme.colorScheme.surfaceTint
                     )
                 }
@@ -250,7 +248,7 @@ fun SearchAppBar(
                             onCloseClick()
                         }
                     }) {
-                    Icon(imageVector = Icons.Filled.Clear, contentDescription = stringResource(Res.string.close_icon),
+                    Icon(painter = painterResource(Resource.Icon.CLOSE), contentDescription = stringResource(Res.string.close_icon),
                         tint = MaterialTheme.colorScheme.surfaceTint
                     )
                 }

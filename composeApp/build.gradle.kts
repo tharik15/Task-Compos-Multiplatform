@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -6,17 +7,14 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.0.20"
-    alias(libs.plugins.ksp)
     alias(libs.plugins.sqldelight) //sqdelight
 }
 
 kotlin {
 
-    androidTarget("android") {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11" // Set JVM target for Kotlin to match Java
-            }
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
     listOf(
@@ -126,6 +124,9 @@ android {
         }
     }
     buildTypes {
+        getByName("debug") {
+            isMinifyEnabled = false
+        }
         getByName("release") {
             isMinifyEnabled = false
         }
@@ -138,16 +139,16 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.7.3" // Ensure this version matches your composeVersion
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.7.3" // Ensure this version matches your composeVersion
+//    }
 
 }
 
 dependencies {
-    implementation(libs.androidx.ui.android)
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.material3.android)
+//    implementation(libs.androidx.ui.android)
+//    implementation(libs.androidx.compose.material)
+//    implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
 //    ksp(libs.androidx.room.compiler)
 
@@ -182,4 +183,3 @@ sqldelight {
         }
     }
 }
-

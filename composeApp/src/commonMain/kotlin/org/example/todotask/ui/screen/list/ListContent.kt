@@ -19,8 +19,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
@@ -52,7 +50,9 @@ import org.example.todotask.ui.theme.HighPriorityColor
 import org.example.todotask.ui.theme.LARGE_PADDING
 import org.example.todotask.util.Actions
 import org.example.todotask.util.RequestState
+import org.example.todotask.util.Resource
 import org.example.todotask.util.SearchAppBarState
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -213,7 +213,7 @@ fun RedBackground(rotate:Float){
         Icon(modifier = Modifier
             .rotate(rotate)
             .align(Alignment.CenterEnd),
-            imageVector = Icons.Filled.Delete, contentDescription = stringResource(Res.string.delete_icon),
+            painter = painterResource(Resource.Icon.DELETE), contentDescription = stringResource(Res.string.delete_icon),
             tint = Color.White)
     }
 

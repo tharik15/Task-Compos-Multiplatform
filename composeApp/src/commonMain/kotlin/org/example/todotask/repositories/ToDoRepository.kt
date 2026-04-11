@@ -9,22 +9,31 @@ import kotlinx.coroutines.IO
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.example.todotask.data.DatabaseDriver
 import org.example.todotask.data.models.TodoTask
 
 import org.example.todotask.data.models.Priority
-import orgexampletodotaskdb.Todo_table
+import org.example.todotask.db.TodoDatabase
+import org.example.todotask.db.Todo_table
 
-class ToDoRepository (private val database: org.example.todotask.db.TodoDatabase) {
+class ToDoRepository (
+    private val databaseDriver: DatabaseDriver
+){
 
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-    private val databaseQuery = database.todoDataBaseQueries
+    val database = TodoDatabase(databaseDriver.createDriver())
+    private val databaseQuery = database.todoDatabaseQueries
 
     val getAllTask : Flow<List<TodoTask>> =
-        database.todoDataBaseQueries.selectAllTasks().asFlow().mapToList(dispatcher).map {
-            it.map {
-                TodoTask(id = it.id.toInt(), title = it.title, description = it.description,mapPriority(it.priority))
+        databaseQuery.selectAllTasks().asFlow().mapToList(dispatcher).map {
+            it.map { task ->
+                task.mapPriority()
             }
         }
+
+    fun Todo_table.mapPriority(): TodoTask {
+        return TodoTask(id = this.id.toInt(), title = this.title, description = this.description, priority = mapPriority(this.priority))
+    }
 
     fun mapPriority(priority: String): Priority {
         return when (priority) {
@@ -36,30 +45,30 @@ class ToDoRepository (private val database: org.example.todotask.db.TodoDatabase
     }
 
 
-    val sortByLowPriority : Flow<List<TodoTask>> = mapFlow(database.todoDataBaseQueries.sortByLowPriority())
-    val sortByHighPriority : Flow<List<TodoTask>> = mapFlow(database.todoDataBaseQueries.sortByHighPriority())
+    val sortByLowPriority : Flow<List<TodoTask>> = mapFlow(databaseQuery.sortByLowPriority())
+    val sortByHighPriority : Flow<List<TodoTask>> = mapFlow(databaseQuery.sortByHighPriority())
 
     fun getSelectedTask(taskId: Int):Flow<TodoTask>{
-        return mapFlow(database.todoDataBaseQueries.selectTaskById(taskId.toLong()),true)
+        return mapFlow(databaseQuery.selectTaskById(taskId.toLong()),true)
     }
 
-    suspend fun addTask(task: TodoTask){
-        database.todoDataBaseQueries.insertTask(task.title,task.description,task.priority.name)
+    fun addTask(task: TodoTask){
+        databaseQuery.insertTask(id = 1,title = task.title, description = task.description, priority = task.priority.name)
     }
 
-    suspend fun update(task: TodoTask){
+    fun update(task: TodoTask){
         databaseQuery.updateTask(title = task.title, description = task.description, priority = task.priority.name,task.id.toLong())
     }
 
-    suspend fun deleteTask(task: TodoTask){
+    fun deleteTask(task: TodoTask){
         databaseQuery.deleteTask(task.id.toLong())
     }
 
-    suspend fun deleteAllTask(){
+    fun deleteAllTask(){
         databaseQuery.deleteAllTasks()
     }
 
-    suspend fun searchDataBase(searchQuery:String):Flow<List<TodoTask>>{
+    fun searchDataBase(searchQuery:String):Flow<List<TodoTask>>{
         return mapFlow(databaseQuery.searchTasks(title = searchQuery, description = searchQuery))
     }
 

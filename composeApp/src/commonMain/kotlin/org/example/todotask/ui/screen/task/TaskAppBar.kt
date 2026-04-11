@@ -1,11 +1,5 @@
 package org.example.todotask.ui.screen.task
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,7 +24,9 @@ import org.example.todotask.resources.back_icon
 import org.example.todotask.resources.close_icon
 import org.example.todotask.resources.delete_icon
 import org.example.todotask.resources.update_icon
+import org.example.todotask.util.Resource
 import org.example.todotask.viewmodel.SharedViewModel
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -68,7 +64,7 @@ fun AddTaskAppBar(navigateListTaskScreen:(String) -> Unit){
 @Composable
 fun BackArrow(onBackClicked:(String) -> Unit){
     IconButton(onClick = { onBackClicked(Actions.NO_ACTION)  }) {
-        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(Res.string.back_icon),
+        Icon(painter = painterResource(Resource.Icon.BACK_ARROW), contentDescription = stringResource(Res.string.back_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }
@@ -77,7 +73,7 @@ fun BackArrow(onBackClicked:(String) -> Unit){
 @Composable
 fun CloseIcon(onCloseClicked:(String) -> Unit){
     IconButton(onClick = { onCloseClicked(Actions.NO_ACTION)  }) {
-        Icon(imageVector = Icons.Filled.Close, contentDescription = stringResource(Res.string.close_icon),
+        Icon(painter = painterResource(Resource.Icon.CLOSE), contentDescription = stringResource(Res.string.close_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }
@@ -87,7 +83,7 @@ fun CloseIcon(onCloseClicked:(String) -> Unit){
 @Composable
 fun DoneNewTask(onAddClicked:(String) -> Unit){
     IconButton(onClick = { onAddClicked(Actions.ADD)  }) {
-        Icon(imageVector = Icons.Filled.Check, contentDescription = stringResource(Res.string.add_task),
+        Icon(painter = painterResource(Resource.Icon.CHECK_BOX), contentDescription = stringResource(Res.string.add_task),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }
@@ -140,7 +136,7 @@ fun ExistingAppBarActions(
 @Composable
 fun DeleteTask(onDeleteClicked:() -> Unit){
     IconButton(onClick = { onDeleteClicked() }) {
-        Icon(imageVector = Icons.Filled.Delete, contentDescription = stringResource(Res.string.delete_icon),
+        Icon(painter = painterResource(Resource.Icon.DELETE), contentDescription = stringResource(Res.string.delete_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }
@@ -149,7 +145,7 @@ fun DeleteTask(onDeleteClicked:() -> Unit){
 @Composable
 fun UpdateTask(onUpdateClicked:(String) -> Unit){
     IconButton(onClick = { onUpdateClicked(Actions.UPDATE)  }) {
-        Icon(imageVector = Icons.Filled.Done, contentDescription = stringResource(Res.string.update_icon),
+        Icon(painter = painterResource(Resource.Icon.ADD), contentDescription = stringResource(Res.string.update_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }

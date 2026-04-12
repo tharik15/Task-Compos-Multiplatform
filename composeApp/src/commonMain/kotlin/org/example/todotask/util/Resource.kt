@@ -15,6 +15,8 @@ object Resource {
         val SEARCH = Res.drawable.search
         val SORT = Res.drawable.sort
         val ADD = Res.drawable.add
+        val TICK = Res.drawable.ic_tick
+        val DROP_DOWN_ARROW = Res.drawable.ic_arrow_drop_down
     }
 
     object Image {

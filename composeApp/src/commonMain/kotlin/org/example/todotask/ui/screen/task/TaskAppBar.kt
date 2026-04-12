@@ -1,5 +1,6 @@
 package org.example.todotask.ui.screen.task
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -12,10 +13,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import org.example.todotask.data.models.TodoTask
-import org.example.todotask.util.Actions
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import org.example.todotask.components.DisplayAlertDialog
 import org.example.todotask.data.models.Priority
+import org.example.todotask.data.models.TodoTask
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.add_task
 import org.example.todotask.resources.alert_dialog_text
@@ -24,8 +26,8 @@ import org.example.todotask.resources.back_icon
 import org.example.todotask.resources.close_icon
 import org.example.todotask.resources.delete_icon
 import org.example.todotask.resources.update_icon
+import org.example.todotask.util.Actions
 import org.example.todotask.util.Resource
-import org.example.todotask.viewmodel.SharedViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -135,7 +137,7 @@ fun ExistingAppBarActions(
 
 @Composable
 fun DeleteTask(onDeleteClicked:() -> Unit){
-    IconButton(onClick = { onDeleteClicked() }) {
+        IconButton(onClick = { onDeleteClicked() }) {
         Icon(painter = painterResource(Resource.Icon.DELETE), contentDescription = stringResource(Res.string.delete_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
@@ -145,7 +147,7 @@ fun DeleteTask(onDeleteClicked:() -> Unit){
 @Composable
 fun UpdateTask(onUpdateClicked:(String) -> Unit){
     IconButton(onClick = { onUpdateClicked(Actions.UPDATE)  }) {
-        Icon(painter = painterResource(Resource.Icon.ADD), contentDescription = stringResource(Res.string.update_icon),
+        Icon(modifier = Modifier.size(25.dp), painter = painterResource(Resource.Icon.TICK), contentDescription = stringResource(Res.string.update_icon),
             tint = MaterialTheme.colorScheme.surfaceTint
         )
     }

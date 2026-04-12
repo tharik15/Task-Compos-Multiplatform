@@ -1,8 +1,13 @@
 package org.example.todotask.ui.screen.list
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenu
@@ -22,11 +27,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
 import org.example.todotask.ui.theme.LARGE_PADDING
 import org.example.todotask.ui.theme.TOP_APP_BAR_SIZE
 import org.example.todotask.util.Actions
@@ -42,6 +50,7 @@ import org.example.todotask.resources.list_screen
 import org.example.todotask.resources.remove_all_task_text
 import org.example.todotask.resources.remove_all_task_title
 import org.example.todotask.resources.search_task
+import org.example.todotask.util.Alpha
 import org.example.todotask.util.Resource
 import org.example.todotask.viewmodel.SharedViewModel
 import org.jetbrains.compose.resources.painterResource
@@ -213,60 +222,75 @@ fun SearchAppBar(
     onCloseClick:() -> Unit,
     onSearchClicked: (String) -> Unit
 ){
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(TOP_APP_BAR_SIZE),
-        color = MaterialTheme.colorScheme.primary
-    ) {
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = text,
-            onValueChange = {
-                onTextChange(it)
-            },
-            placeholder = { Text(modifier = Modifier.alpha(0.5f),
-                text = "Search",color = Color.Gray)},
-            textStyle = TextStyle(
-                color = MaterialTheme.colorScheme.primary,
-                fontSize = MaterialTheme.typography.titleMedium.fontSize),
-            singleLine = true,
-            leadingIcon = { 
-                IconButton(modifier = Modifier.alpha(0.2f),
-                    onClick = {  }) {
-                    Icon(painter = painterResource(Resource.Icon.SEARCH), contentDescription = "Search Task",
-                        tint = MaterialTheme.colorScheme.surfaceTint
-                    )
-                }
-            },
-            trailingIcon = {
-                IconButton(modifier = Modifier.alpha(0.2f),
-                    onClick = {
-                        if (text.isNotEmpty()){
-                            onTextChange("")
-                        }else{
-                            onCloseClick()
+    TopAppBar(
+        title = {},
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            titleContentColor = MaterialTheme.colorScheme.inverseSurface
+        ),
+        actions = {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(TOP_APP_BAR_SIZE)
+                    .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = Alpha.HALF),
+                    shape = CircleShape
+                ),
+                contentAlignment = Alignment.Center,
+            ){
+                TextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = text,
+                    onValueChange = {
+                        onTextChange(it)
+                    },
+                    placeholder = {
+                        Text(modifier = Modifier.alpha(Alpha.HALF),
+                        text = "Search",color = Color.Gray) },
+                    textStyle = TextStyle(
+                        color = MaterialTheme.colorScheme.primary,
+                        fontSize = MaterialTheme.typography.titleMedium.fontSize),
+                    singleLine = true,
+                    leadingIcon = {
+                        IconButton(modifier = Modifier.alpha(0.2f),
+                            onClick = {  }) {
+                            Icon(painter = painterResource(Resource.Icon.SEARCH), contentDescription = "Search Task",
+                                tint = MaterialTheme.colorScheme.surfaceTint
+                            )
                         }
-                    }) {
-                    Icon(painter = painterResource(Resource.Icon.CLOSE), contentDescription = stringResource(Res.string.close_icon),
-                        tint = MaterialTheme.colorScheme.surfaceTint
+                    },
+                    trailingIcon = {
+                        IconButton(modifier = Modifier.alpha(0.2f),
+                            onClick = {
+                                if (text.isNotEmpty()){
+                                    onTextChange("")
+                                }else{
+                                    onCloseClick()
+                                }
+                            }) {
+                            Icon(painter = painterResource(Resource.Icon.CLOSE), contentDescription = stringResource(Res.string.close_icon),
+                                tint = MaterialTheme.colorScheme.surfaceTint
+                            )
+                        }
+                    },
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                    keyboardActions = KeyboardActions(
+                        onSearch = {
+                            onSearchClicked(text)
+                        }
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        cursorColor = MaterialTheme.colorScheme.primary,
+                        focusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                }
-            },
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(
-                onSearch = {
-                    onSearchClicked(text)
-                }
-            ),
-            colors = TextFieldDefaults.colors(
-                cursorColor = MaterialTheme.colorScheme.primary,
-                focusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            )
-        )
-    }
+                )
+            }
+        }
+    )
 }
 
 @Preview

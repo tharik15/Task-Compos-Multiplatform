@@ -34,6 +34,7 @@ import org.example.todotask.resources.Res
 import org.example.todotask.resources.arrow_back
 import org.example.todotask.util.PRIORITY_DROP_DOWN_HEIGHT
 import org.example.todotask.util.PRIORITY_INDICATOR_SIZE
+import org.example.todotask.util.Resource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -81,7 +82,7 @@ fun PriorityDropDown(
             .alpha(0.5f)
             .rotate(degrees = angle),
             onClick = { expanded = true }) {
-            Icon(painter = painterResource(Res.drawable.arrow_back), contentDescription = "arrow")
+            Icon(painter = painterResource(Resource.Icon.DROP_DOWN_ARROW), contentDescription = "arrow")
 
             DropdownMenu(
                 modifier = Modifier.width(with(LocalDensity.current){ dropdownWidth.width.toDp() }),

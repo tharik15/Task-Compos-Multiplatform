@@ -1,13 +1,11 @@
 package org.example.todotask.ui.screen.list
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenu
@@ -16,7 +14,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -31,16 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import org.example.todotask.ui.theme.LARGE_PADDING
-import org.example.todotask.ui.theme.TOP_APP_BAR_SIZE
-import org.example.todotask.util.Actions
-import org.example.todotask.util.SearchAppBarState
-import org.example.todotask.components.PriorityItem
 import org.example.todotask.components.DisplayAlertDialog
+import org.example.todotask.components.PriorityItem
 import org.example.todotask.data.models.Priority
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.close_icon
@@ -50,9 +42,13 @@ import org.example.todotask.resources.list_screen
 import org.example.todotask.resources.remove_all_task_text
 import org.example.todotask.resources.remove_all_task_title
 import org.example.todotask.resources.search_task
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
+import org.example.todotask.ui.theme.LARGE_PADDING
+import org.example.todotask.ui.theme.TOP_APP_BAR_SIZE
+import org.example.todotask.util.Actions
 import org.example.todotask.util.Alpha
 import org.example.todotask.util.Resource
-import org.example.todotask.ui.screen.viewmodel.SharedViewModel
+import org.example.todotask.util.SearchAppBarState
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview

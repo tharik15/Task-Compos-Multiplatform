@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.example.todotask.util.Actions
 import org.example.todotask.util.SearchAppBarState
 import kotlinx.coroutines.launch
@@ -171,7 +172,7 @@ fun LifecycleAwareComposable(
     onStart: () -> Unit,
     onStop: () -> Unit
 ) {
-    val lifecycleOwner = LocalLifecycleOwner.current
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
 
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->

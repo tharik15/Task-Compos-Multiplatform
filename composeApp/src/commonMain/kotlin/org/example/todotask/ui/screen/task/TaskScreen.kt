@@ -8,7 +8,7 @@ import org.example.todotask.data.models.TodoTask
 
 import org.example.todotask.util.Actions
 import org.example.todotask.data.models.Priority
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 
 @Composable
 fun TaskScreen(

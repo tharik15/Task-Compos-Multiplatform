@@ -1,19 +1,19 @@
 package org.example.todotask.di
 
-import org.example.todotask.repositories.DataStoreRepository
-import org.example.todotask.repositories.ToDoRepository
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.data.repository.DataStoreRepositoryImpl
+import org.example.todotask.data.repository.ToDoRepositoryImpl
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 val provideDataStoreRepository = module {
-    singleOf(::DataStoreRepository)
+    singleOf(::DataStoreRepositoryImpl)
 }
 
 val provideUseCaseModule = module {
-    singleOf(::ToDoRepository)
+    singleOf(::ToDoRepositoryImpl)
 }
 
 val provideViewModelModule = module {

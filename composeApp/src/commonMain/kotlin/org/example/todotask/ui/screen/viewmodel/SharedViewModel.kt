@@ -1,4 +1,4 @@
-package org.example.todotask.viewmodel
+package org.example.todotask.ui.screen.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -13,19 +13,19 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import org.example.todotask.data.models.TodoTask
 import org.example.todotask.data.models.Priority
-import org.example.todotask.repositories.DataStoreRepository
-import org.example.todotask.repositories.ToDoRepository
+import org.example.todotask.data.models.TodoTask
+import org.example.todotask.data.repository.DataStoreRepositoryImpl
+import org.example.todotask.data.repository.ToDoRepositoryImpl
 import org.example.todotask.ui.theme.TITLE_MAX_LENGHT
 import org.example.todotask.util.Actions
 import org.example.todotask.util.RequestState
 import org.example.todotask.util.SearchAppBarState
 import org.koin.core.component.KoinComponent
 
-class SharedViewModel(private val toDoRepository: ToDoRepository,
-                      private val dataStoreRepository: DataStoreRepository
-) : ViewModel(),KoinComponent {
+class SharedViewModel(private val toDoRepository: ToDoRepositoryImpl,
+                      private val dataStoreRepository: DataStoreRepositoryImpl
+) : ViewModel(), KoinComponent {
 
 
     var id  by mutableIntStateOf(-1)
@@ -53,15 +53,15 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
     private val _sortState = MutableStateFlow<RequestState<Priority>>(RequestState.Idle)
     val sortState : StateFlow<RequestState<Priority>> = _sortState
 
-    val lowPriorityTask : StateFlow<List<TodoTask>> =
-        toDoRepository.sortByLowPriority.stateIn(
+    val lowPriorityTask : StateFlow<List<TodoTask>> = toDoRepository.sortByLowPriority(
+        viewModelScope.coroutineContext).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             arrayListOf()
         )
 
     val highPriorityTask : StateFlow<List<TodoTask>> =
-        toDoRepository.sortByHighPriority.stateIn(
+        toDoRepository.sortByHighPriority(viewModelScope.coroutineContext).stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             arrayListOf()
@@ -75,7 +75,6 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
 
     private fun readSortTask(){
         _sortState.value = RequestState.Idle
-//        _sortState.value = RequestState.Success(Priority.LOW)
         try {
             viewModelScope.launch {
                 dataStoreRepository.readStoreState.
@@ -110,7 +109,7 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
 
     }
 
-    val _selectedTask:MutableStateFlow<TodoTask?> = MutableStateFlow<TodoTask?>(null)
+    private val _selectedTask: MutableStateFlow<TodoTask?> = MutableStateFlow(null)
     val selectedTask : StateFlow<TodoTask?> = _selectedTask
 
     fun getSearchTask(searchQuery:String){
@@ -129,7 +128,7 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
 //                    started = SharingStarted.WhileSubscribed(5000),
 //                    initialValue = RequestState.Loading
 //                )
-                toDoRepository.searchDataBase(searchQuery = "%${searchQuery}%").collect{
+                toDoRepository.searchDataBase(searchQuery = "%${searchQuery}%",viewModelScope.coroutineContext).collect{
                     _searchTask.value = RequestState.Success(it)
                 }
             }
@@ -155,10 +154,6 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
         }catch (e:Exception){
             e.printStackTrace()
         }
-    }
-
-    fun resetSelectedTask(){
-        _selectedTask.value = null
     }
 
     fun updateTask(todoTask: TodoTask?){
@@ -190,7 +185,8 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
             val todoTask = TodoTask(
                 title = title,
                 description = description,
-                priority = priority)
+                priority = priority
+            )
             toDoRepository.addTask(todoTask)
         }
         searchAppBarState = SearchAppBarState.CLOSED
@@ -202,7 +198,8 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
                 id = id,
                 title = title,
                 description = description,
-                priority = priority)
+                priority = priority
+            )
             toDoRepository.update(todoTask)
         }
     }
@@ -213,7 +210,8 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
                 id = id,
                 title = title,
                 description = description,
-                priority = priority)
+                priority = priority
+            )
             toDoRepository.deleteTask(todoTask)
         }
     }
@@ -245,15 +243,13 @@ class SharedViewModel(private val toDoRepository: ToDoRepository,
         }
     }
 
-    fun updatePriority(newPriority:Priority){
+    fun updatePriority(newPriority: Priority){
         priority = newPriority
     }
     fun updateDescription(newDesc:String){
         description = newDesc
     }
-    fun updateTitle(newTitle:String){
-        title = newTitle
-    }
+
     fun updateAction(actions: String){
         action = actions
     }

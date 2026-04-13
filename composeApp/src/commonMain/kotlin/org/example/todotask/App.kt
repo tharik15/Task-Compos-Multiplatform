@@ -8,7 +8,7 @@ import com.example.compose.darkScheme
 import com.example.compose.lightScheme
 import org.example.todotask.navigation.SetupNavigation
 import org.example.todotask.ui.theme.Typography
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 

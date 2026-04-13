@@ -52,7 +52,7 @@ import org.example.todotask.resources.remove_all_task_title
 import org.example.todotask.resources.search_task
 import org.example.todotask.util.Alpha
 import org.example.todotask.util.Resource
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview

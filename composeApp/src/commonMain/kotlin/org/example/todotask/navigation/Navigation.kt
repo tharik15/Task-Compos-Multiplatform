@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import org.example.todotask.navigation.destination.listComposable
 import org.example.todotask.navigation.destination.splashComposable
 import org.example.todotask.navigation.destination.taskComposable
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable

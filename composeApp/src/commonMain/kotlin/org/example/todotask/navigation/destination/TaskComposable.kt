@@ -12,7 +12,7 @@ import androidx.navigation.toRoute
 import org.example.todotask.util.Actions
 import org.example.todotask.navigation.Screen
 import org.example.todotask.ui.screen.task.TaskScreen
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 
 fun NavGraphBuilder.taskComposable(
     navigateToListScreen:(String) -> Unit,

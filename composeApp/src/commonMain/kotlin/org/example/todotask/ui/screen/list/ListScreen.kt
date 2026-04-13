@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 import org.example.todotask.resources.Res
 import org.example.todotask.resources.add_task
 import org.example.todotask.util.Resource
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 

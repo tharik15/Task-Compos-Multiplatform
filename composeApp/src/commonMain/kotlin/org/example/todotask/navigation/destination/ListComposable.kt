@@ -13,7 +13,7 @@ import androidx.navigation.toRoute
 import org.example.todotask.util.Actions
 import org.example.todotask.navigation.Screen
 import org.example.todotask.ui.screen.list.ListScreen
-import org.example.todotask.viewmodel.SharedViewModel
+import org.example.todotask.ui.screen.viewmodel.SharedViewModel
 
 @ExperimentalAnimationApi
 fun NavGraphBuilder.listComposable(
